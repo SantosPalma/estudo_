@@ -1,5 +1,7 @@
 package dominio;
 
+import dominio.interfaces.BankTransactionFilter;
+
 import java.time.Month;
 
 public class BankTransactionsInFebruaryAndExpensive implements BankTransactionFilter {

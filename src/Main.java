@@ -1,8 +1,5 @@
 import dominio.*;
-import org.junit.Test;
-import test.java.BankStatementCSVParseTest;
-
-import java.io.IOException;
+import dominio.interfaces.BankStatementParser;
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

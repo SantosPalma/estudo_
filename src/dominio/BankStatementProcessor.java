@@ -1,5 +1,9 @@
 package dominio;
 
+import dominio.interfaces.BankTransactionFilter;
+import dominio.interfaces.BankTransactionSummarizer;
+
+import javax.swing.plaf.PanelUI;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +17,19 @@ public class BankStatementProcessor {
         this.bankTransactions = bankTransactions;
     }
 
-
-
-    public  double calculateTotalAmount() {
-        double total = 0d;
+    public double summarizeTransactions(final BankTransactionSummarizer bankTransactionSummarizer){
+        double result = 0;
         for(final BankTransaction bankTransaction: bankTransactions){
-            total += bankTransaction.getAmount();
+            result = bankTransactionSummarizer.summarize(result, bankTransaction);
         }
-        return total;
+        return result;
+
+    }
+
+    public  double calculeTotalInMonth(final Month month)
+    {
+        return summarizeTransactions((acc, bankTransactions) ->
+                bankTransactions.getDate().getMonth() == month ? acc + bankTransactions.getAmount() : acc);
     }
 
     public List<BankTransaction> findTransactions(
@@ -32,21 +41,22 @@ public class BankStatementProcessor {
                 result.add(bankTransaction);
             }
         }
-        return result;
+        return bankTransactions;
 
     }
 
-    public  double calculeTotalInMonth(final Month month)
-    {
-        double total = 0;
+    public List<BankTransaction> findTransactionsGreaterThanEqual(final int amount){
+        return findTransactions(bankTransaction -> bankTransaction.getAmount() >= amount);
+    }
+
+
+    public  double calculateTotalAmount() {
+        double total = 0d;
         for(final BankTransaction bankTransaction: bankTransactions){
-            if(bankTransaction.getDate().getMonth() == month){
-                total +=bankTransaction.getAmount();
-            }
+            total += bankTransaction.getAmount();
         }
         return total;
     }
-
 
 
     public double calculateTotalForCategory(final String category)

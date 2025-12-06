@@ -1,4 +1,6 @@
-package dominio;
+package dominio.interfaces;
+
+import dominio.BankTransaction;
 
 @FunctionalInterface
 public interface BankTransactionFilter {

@@ -1,6 +1,6 @@
 package test.java;
  import dominio.BankStatementCSVParser;
- import dominio.BankStatementParser;
+ import dominio.interfaces.BankStatementParser;
  import dominio.BankTransaction;
  import org.junit.Assert;
  import org.junit.Test;

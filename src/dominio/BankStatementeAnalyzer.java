@@ -1,5 +1,7 @@
 package dominio;
 
+import dominio.interfaces.BankStatementParser;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
