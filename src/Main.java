@@ -1,4 +1,6 @@
 import dominio.*;
+import org.junit.Test;
+import test.java.BankStatementCSVParseTest;
 
 import java.io.IOException;
 
@@ -7,12 +9,14 @@ import java.io.IOException;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main{
 
-    public static void main(final String[] args) throws IOException{
+    public static void main(final String[] args) throws Exception {
 
 
         final BankStatementeAnalyzer bankStatementeAnalyzer = new BankStatementeAnalyzer();
         final BankStatementParser bankStatementParser = new BankStatementCSVParser();
-        bankStatementeAnalyzer.analyze(args[0], bankStatementParser);
+            bankStatementeAnalyzer.analyze(args[0], bankStatementParser);
+
+
 
     }
 }
